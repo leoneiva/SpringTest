@@ -12,6 +12,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
+<link type="text/css" href="recursos/css/tarefas.css" rel="stylesheet" />
 <script src="js/JQuery/jquery-3.0.0.min.js"></script>
 </head>
 <body>
