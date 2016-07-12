@@ -40,7 +40,6 @@ public class TarefasController {
 		if(result.hasFieldErrors("descricao")) {
 			return "tarefa/formulario";
 		}
-		JdbcTarefaDao dao = new JdbcTarefaDao();
 		dao.adiciona(tarefa);
 		return "tarefa/adicionada";
 	}
@@ -49,7 +48,6 @@ public class TarefasController {
 	// LISTA TAREFAS
 	@RequestMapping("listaTarefas")
 	public String lista(Model model) {
-		JdbcTarefaDao dao = new JdbcTarefaDao();
 		model.addAttribute("tarefas", dao.lista());
 		return "tarefa/lista";
 	}
@@ -58,7 +56,6 @@ public class TarefasController {
 	// MOSTRA TAREFA POR ID
 	@RequestMapping("mostraTarefa")
 	public String mostra(Long id, Model model) {
-		JdbcTarefaDao dao = new JdbcTarefaDao();
 		model.addAttribute("tarefa", dao.buscaPorId(id));
 		return "tarefa/mostra";
 	}
@@ -67,7 +64,6 @@ public class TarefasController {
 	// REMOVE TAREFA
 	@RequestMapping("removeTarefa")
 	public String remove(Tarefa tarefa) {
-		JdbcTarefaDao dao = new JdbcTarefaDao();
 		dao.remove(tarefa);
 		return "redirect:listaTarefas"; // No return, redireciona para não carregar a lista novamente.
 	}
@@ -76,7 +72,6 @@ public class TarefasController {
 	// ALTERA TAREFA
 	@RequestMapping("alteraTarefa")
 	public String altera(Tarefa tarefa) {
-		JdbcTarefaDao dao = new JdbcTarefaDao();
 		dao.altera(tarefa);
 		return "redirect:listaTarefas";
 	}
@@ -84,7 +79,6 @@ public class TarefasController {
 	// FINALIZA TAREFA AJAX
 	@RequestMapping("finalizaTarefa")
 	public void finaliza(Long id, HttpServletResponse response) {
-		JdbcTarefaDao dao = new JdbcTarefaDao();
 		dao.finaliza(id);
 		response.setStatus(200);
 	}
