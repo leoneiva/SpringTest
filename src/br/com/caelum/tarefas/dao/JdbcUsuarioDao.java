@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import br.com.caelum.tarefas.ConnectionFactory;
 import br.com.caelum.tarefas.modelo.Usuario;
@@ -19,6 +22,7 @@ public class JdbcUsuarioDao {
 		}
 	}
 
+	// VERIFICA USUÁRIO
 	public boolean existeUsuario(Usuario usuario) {
 		
 		if(usuario == null) {
@@ -38,7 +42,62 @@ public class JdbcUsuarioDao {
 			return encontrado;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}}
+		
+	
+	// ADICIONA USUÁRIO
+		public void adiciona(Usuario usuario){
+			String sql2 = "insert into usuarios (id, login, senha) " +
+						"values (?,?,?)";
+			try{
+				PreparedStatement stmt = this.connection.prepareStatement(sql2);
+				stmt.setInt(1, usuario.getId());
+				stmt.setString(2, usuario.getLogin());
+				stmt.setString(3, usuario.getSenha());
+				//stmt.setDate(2, new Date(tarefa.getDataFinalizacao().getTimeInMillis())); 
+				stmt.execute();
+				stmt.close();
+			}catch (SQLException e){
+				throw new RuntimeException (e);
+			}}
+			
+			// LISTA USUARIOS
+			public List<Usuario> lista(){
+			
+				try {
+					List<Usuario> usuarios = new ArrayList<Usuario>();
+					PreparedStatement stmt = this.connection
+							.prepareStatement("select * from usuarios");
+					ResultSet rs = stmt.executeQuery();
+					
+					while (rs.next()) {
+						// adiciona a tarefa na lista
+						usuarios.add(populaUser(rs));
+					}
+
+					rs.close();
+					stmt.close();
+
+					return usuarios;
+				} catch (SQLException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			
+		// continuar a listagem, mas em um novo método
+			
+			private Usuario populaUser(ResultSet rs) throws SQLException {
+				Usuario usuario = new Usuario();
+
+				// popula o objeto tarefa
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+
+			// Retorna o objeto no while
+				return usuario;
+			}
+			
+			
+			
 		}
-	}
-}
 
