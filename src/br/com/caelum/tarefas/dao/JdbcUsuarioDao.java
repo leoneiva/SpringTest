@@ -7,11 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import br.com.caelum.tarefas.ConnectionFactory;
+import br.com.caelum.tarefas.modelo.Tarefa;
 import br.com.caelum.tarefas.modelo.Usuario;
 
 public class JdbcUsuarioDao {
+
 	private Connection connection;
 
 	public JdbcUsuarioDao() {
@@ -69,16 +72,21 @@ public class JdbcUsuarioDao {
 					PreparedStatement stmt = this.connection
 							.prepareStatement("select * from usuarios");
 					ResultSet rs = stmt.executeQuery();
-					
+					// tamanho para pegar o tamanho da lista e fazer a pagianção
+				int	tamanho = 0;
 					while (rs.next()) {
-						// adiciona a tarefa na lista
+						// adiciona a user na lista
 						usuarios.add(populaUser(rs));
+						tamanho = tamanho + 1;
 					}
+					
+		System.out.println(tamanho + " tamanho da lista");
 
 					rs.close();
 					stmt.close();
 
 					return usuarios;
+					
 				} catch (SQLException e) {
 					throw new RuntimeException(e);
 				}
@@ -90,11 +98,31 @@ public class JdbcUsuarioDao {
 				Usuario usuario = new Usuario();
 
 				// popula o objeto tarefa
+				usuario.setId(rs.getInt("id"));
 				usuario.setLogin(rs.getString("login"));
+				usuario.setPerfil(rs.getInt("perfil"));
 				usuario.setSenha(rs.getString("senha"));
 
 			// Retorna o objeto no while
 				return usuario;
+			}
+			
+			
+			public void remove(Usuario usuario) {
+
+				if (usuario.getId() == 0) {
+					throw new IllegalStateException("Id nÃ£o deve ser nula.");
+				}
+
+				String sql = "delete from usuarios where id = ?";
+				PreparedStatement stmt;
+				try {
+					stmt = connection.prepareStatement(sql);
+					stmt.setLong(1, usuario.getId());
+					stmt.execute();
+				} catch (SQLException e) {
+					throw new RuntimeException(e);
+				}
 			}
 			
 			

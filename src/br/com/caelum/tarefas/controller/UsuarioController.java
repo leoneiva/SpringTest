@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.caelum.tarefas.dao.JdbcTarefaDao;
 import br.com.caelum.tarefas.dao.JdbcUsuarioDao;
+import br.com.caelum.tarefas.modelo.Tarefa;
 import br.com.caelum.tarefas.modelo.Usuario;
 
 
@@ -38,10 +39,11 @@ JdbcUsuarioDao dao = new JdbcUsuarioDao();
 
 	
 	
-	// LISTA TAREFAS
+	// LISTA USUARIO
 	@RequestMapping("listaUsuarios")
 	public String lista(Model model) {
 		JdbcUsuarioDao dao = new JdbcUsuarioDao();
+		model.addAttribute("usuarios", dao.lista());
 
 
 		
@@ -52,6 +54,16 @@ JdbcUsuarioDao dao = new JdbcUsuarioDao();
 	}
 	
 
+	// REMOVE TAREFA
+	@RequestMapping("removeUsuario")
+	public String remove(Usuario usuario) {
+		JdbcUsuarioDao dao = new JdbcUsuarioDao();
+		System.out.println(usuario.getId() + "id usuario");
+		dao.remove(usuario);
+		return "redirect:listaUsuarios"; // No return, redireciona para não carregar a lista novamente.
+	}
+
+	
 	
 
 }
