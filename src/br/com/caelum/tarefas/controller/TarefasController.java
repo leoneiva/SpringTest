@@ -23,7 +23,7 @@ public class TarefasController {
 	private final JdbcTarefaDao dao;
 	
 	@Autowired
-	public TarefasController(JdbcTarefaDao dao) {
+	public TarefasController (JdbcTarefaDao dao) {
 	this.dao = dao;
 	}
 	

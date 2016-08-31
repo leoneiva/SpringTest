@@ -12,10 +12,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
-<link type="text/css" href="recursos/css/tarefas.css" rel="stylesheet" />
-<script src="js/JQuery/jquery-3.0.0.min.js"></script>
+ <%@include  file="/WEB-INF/views/headTag.jsp" %>
 </head>
 <body>
+  <%@include  file="/WEB-INF/views/menu.jsp" %>
+ <%@include  file="/WEB-INF/views/cabecalho.jsp" %>
+
 
 <%-- Script jqyery para ajax --%>
 <%-- AJAX PARA FINALIZAR TAREFA --%>
@@ -40,7 +42,7 @@ $("#tarefa_"+id).closest("tr").hide();
 </script>
 
 
-	<a href="novaTarefa">Criar nova tarefa</a>
+
 	<br />
 	<br />
 	<table>

@@ -10,12 +10,14 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <html>
 <head>
-<link type="text/css" href="recursos/css/tarefas.css" rel="stylesheet" />
-<script src="js/JQuery/jquery-3.0.0.min.js"></script>
+<%@include  file="/WEB-INF/views/headTag.jsp" %>
 </head>
 <body>
+  <%@include  file="/WEB-INF/views/menu.jsp" %>
+ <%@include  file="/WEB-INF/views/cabecalho.jsp" %>
 
 <%-- Script jqyery para ajax --%>
 <%-- AJAX PARA FINALIZAR TAREFA --%>
@@ -50,8 +52,27 @@ $("#tarefa_"+id).closest("tr").hide();
 			<th>Finalizado?</th>
 			<th>Data de finalização</th>
 		</tr>
-		<c:forEach items="${usuarios}" var="usuario">
+
+<!-- 		// forEach com paginação -->
+
+
+		
+
+				<c:forEach items="${usuarios}" var="contagem" varStatus="status">
+
+<%-- <c:out value="count: ${status.count}"/> --%>
+		<c:set var="contar" value="${loopCounter.count}" />
+
+						</c:forEach>
+						<c:out value="Tamanho do array é:  ${contar / 3}"/>	
+
+		<c:set var="inicio" value="0" />
+		<c:set var="fim" value="10" />	
+		${tamanho}
+		
+		<c:forEach begin="${inicio}" end="${fim}" items="${usuarios}" var="usuario">
 			<tr>
+		
 				<td>${usuario.id}</td>
 				<td>${usuario.login}</td>
 				<td>${usuario.senha}</td>
@@ -60,7 +81,12 @@ $("#tarefa_"+id).closest("tr").hide();
 				<td><a href="removeTarefa?id=${usuario.id}">Remover</a></td>
 				<td id="tarefa_${usuario.id}"><a href="#" onClick="removeAgora(${usuario.id})">Remover com ajax</a></td>
 			</tr>
+			
 		</c:forEach>
 	</table>
+	<br>
+
+<<  <  >  >>
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 package br.com.caelum.tarefas.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.ListableBeanFactory;
@@ -41,7 +42,12 @@ JdbcUsuarioDao dao = new JdbcUsuarioDao();
 	@RequestMapping("listaUsuarios")
 	public String lista(Model model) {
 		JdbcUsuarioDao dao = new JdbcUsuarioDao();
-		model.addAttribute("usuarios", dao.lista());
+
+
+		
+		// abaixo vai passar o objeto da paginação. criar um objeto para calcular o tamanho do array e passar as variaveis para a paginação.
+		// model.addAttribute("paginacao", dao.lista());
+
 		return "usuario/lista";
 	}
 	

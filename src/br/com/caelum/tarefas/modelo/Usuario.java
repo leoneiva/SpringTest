@@ -10,6 +10,7 @@ public class Usuario {
 	private int id;
 	private String login;
 	private String senha;
+	
 
 	public String getLogin() {
 		return login;
