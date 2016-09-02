@@ -13,37 +13,14 @@
 
 	<h1>Novo cadastro</h1>
 	<hr />
-	<form action="salvaUsuario" method="post">
+	<form action="salvaPerfil" method="post">
 		<table>
 			<tr>
-				<td>Login</td>
-				<td><input type="text" name="login" /><br /></td>
+				<td>Perfil</td>
+				<td><input type="text" name="perfil" /><br /></td>
 			</tr>
 			<tr>
-				<td>Senha</td>
-				<td><input type="text" name="senha" /><br /></td>
-			</tr>
-		
-			
-					<td>Ativo</td>
-				<td>
-	 <select name="ativo">
-					<option value="1" selected>	Ativo</option>
-				<option value="0" >Inativo</option>
-		</select> 
-					</tr>
-						<tr>
-				<td>Perfil</td>
-				<td><select name="perfil">
-				
-						<c:forEach items="${perfil}" var="perfil">
-							<option value="${perfil.id}">${perfil.perfil}</option>
-						</c:forEach>
 					
-				</select></td>
-			</tr>
-
-			
 		</table>
 		<input type="submit" value="Gravar" />
 	</form>

@@ -30,7 +30,7 @@ public class TarefasController {
 	// Formulário de tarefa
 	@RequestMapping("novaTarefa")
 	public String form() {
-		return "tarefa/formulario";
+		return "tarefa/novo";
 	}
 
 
@@ -38,10 +38,10 @@ public class TarefasController {
 	@RequestMapping("adicionaTarefa")
 	public String adiciona(@Valid Tarefa tarefa, BindingResult result) {
 		if(result.hasFieldErrors("descricao")) {
-			return "tarefa/formulario";
+			return "tarefa/novo";
 		}
 		dao.adiciona(tarefa);
-		return "tarefa/adicionada";
+		return "tarefa/adicionadaSucesso";
 	}
 
 
@@ -57,7 +57,7 @@ public class TarefasController {
 	@RequestMapping("mostraTarefa")
 	public String mostra(Long id, Model model) {
 		model.addAttribute("tarefa", dao.buscaPorId(id));
-		return "tarefa/mostra";
+		return "tarefa/edita";
 	}
 
 
@@ -71,9 +71,10 @@ public class TarefasController {
 
 	// ALTERA TAREFA
 	@RequestMapping("alteraTarefa")
-	public String altera(Tarefa tarefa) {
+	public String altera(Tarefa tarefa, BindingResult result) {
+		System.out.println("controller ok");
 		dao.altera(tarefa);
-		return "redirect:listaTarefas";
+		return "redirect:listaTarefas"; 
 	}
 	
 	// FINALIZA TAREFA AJAX

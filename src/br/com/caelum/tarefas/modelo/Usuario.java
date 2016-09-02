@@ -9,6 +9,7 @@ public class Usuario {
 	
 	private int id;
 	private String login;
+	private int ativo;
 	private int perfil;
 	private String senha;
 	
@@ -43,5 +44,13 @@ public class Usuario {
 
 	public void setPerfil(int perfil) {
 		this.perfil = perfil;
+	}
+
+	public int getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(int ativo) {
+		this.ativo = ativo;
 	}
 }

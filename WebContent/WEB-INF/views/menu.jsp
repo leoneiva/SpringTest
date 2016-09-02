@@ -34,7 +34,7 @@
                         <a href="listaUsuarios">Lista </a>
                         <img class="corner_inset_right" alt="" src="recursos/imagens/Menu/corner_inset_right.png"/>
                     </li>
-                    <li><a href="AdicionarUsuario">Adicionar usuário</a></li>
+                    <li><a href="novoUsuario">Adicionar usuário</a></li>
                     <li class="last">
                         <img class="corner_left" alt="" src="recursos/imagens/Menu/corner_left.png"/>
                         <img class="middle" alt="" src="recursos/imagens/Menu/dot.gif"/>
@@ -42,9 +42,26 @@
                     </li>
                 </ul>
             </li>
-            
-            
-             <li><a href="logout">Sair</a> <!------- USUÁRIOS ---------->
+
+
+		<li><a href="listaPerfil">Listar perfis</a> <!------- Configurações ---------->
+			<ul id="perfis">
+				<li><img class="corner_inset_left" alt=""
+					src="recursos/imagens/Menu/corner_inset_left.png" /> <a
+					href="listaPerfil">Lista de perfis</a> <img
+					class="corner_inset_right" alt=""
+					src="recursos/imagens/Menu/corner_inset_right.png" /></li>
+				<li><a href="novoPerfil">Criar perfil</a></li>
+				<li class="last"><img class="corner_left" alt=""
+					src="recursos/imagens/Menu/corner_left.png" /> <img class="middle"
+					alt="" src="recursos/imagens/Menu/dot.gif" /> <img
+					class="corner_right" alt=""
+					src="recursos/imagens/Menu/corner_right.png" /></li>
+
+			</ul></li>
+
+
+		<li><a href="logout">Sair</a> <!------- LOGOUT ---------->
                 <ul id="sair">
             
             

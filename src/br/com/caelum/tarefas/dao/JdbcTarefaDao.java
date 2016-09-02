@@ -62,6 +62,7 @@ public class JdbcTarefaDao {
 	public void altera(Tarefa tarefa) {
 		String sql = "update tarefas set descricao = ?, finalizado = ?, dataFinalizacao = ? where id = ?";
 		PreparedStatement stmt;
+		System.out.println("Código rechead");
 		try {
 			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, tarefa.getDescricao());

@@ -1,6 +1,7 @@
 package br.com.caelum.tarefas.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,19 +51,49 @@ public class JdbcUsuarioDao {
 	
 	// ADICIONA USUÁRIO
 		public void adiciona(Usuario usuario){
-			String sql2 = "insert into usuarios (id, login, senha) " +
-						"values (?,?,?)";
+			String sql2 = "insert into usuarios (id, login, senha, perfil) " +
+						"values (?,?,?,?)";
 			try{
 				PreparedStatement stmt = this.connection.prepareStatement(sql2);
 				stmt.setInt(1, usuario.getId());
 				stmt.setString(2, usuario.getLogin());
 				stmt.setString(3, usuario.getSenha());
+				stmt.setInt(4, usuario.getPerfil());
 				//stmt.setDate(2, new Date(tarefa.getDataFinalizacao().getTimeInMillis())); 
+				System.out.println(usuario.getPerfil() + "     perfil aqui");
+				System.out.println(usuario.getAtivo() + "     Está ativo?");				
 				stmt.execute();
 				stmt.close();
 			}catch (SQLException e){
 				throw new RuntimeException (e);
 			}}
+		
+		
+		
+		// ALTERA USUÁRIO
+		public void altera(Usuario usuario) {
+			String sql = "update usuarios set login = ?, senha = ?, perfil = ?, ativo = ? where id = ?";
+			PreparedStatement stmt;
+			try {
+				stmt = connection.prepareStatement(sql);
+				stmt.setString(1, usuario.getLogin());
+				stmt.setString(2, usuario.getSenha());
+				stmt.setInt(3, usuario.getPerfil());
+				stmt.setInt(4, usuario.getAtivo());
+				stmt.setInt(5, usuario.getId());
+				System.out.println(usuario.getPerfil() + 5 + "     perfil aqui");
+				System.out.println(usuario.getAtivo() + 5 +  "     Está ativo?");	
+				System.out.println(usuario.getLogin() + " Login");
+				System.out.println(usuario.getSenha() + " Senha");
+				System.out.println(usuario.getId() + " Id");
+				stmt.execute();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		
+		
+		
 			
 			// LISTA USUARIOS
 			public List<Usuario> lista(){
@@ -90,24 +121,12 @@ public class JdbcUsuarioDao {
 				} catch (SQLException e) {
 					throw new RuntimeException(e);
 				}
+				// CONTINUA LÁ EM BAIXO COM POPULAUSER
 			}
 			
-		// continuar a listagem, mas em um novo método
-			
-			private Usuario populaUser(ResultSet rs) throws SQLException {
-				Usuario usuario = new Usuario();
 
-				// popula o objeto tarefa
-				usuario.setId(rs.getInt("id"));
-				usuario.setLogin(rs.getString("login"));
-				usuario.setPerfil(rs.getInt("perfil"));
-				usuario.setSenha(rs.getString("senha"));
-
-			// Retorna o objeto no while
-				return usuario;
-			}
 			
-			
+			// REMOVE USUARIO
 			public void remove(Usuario usuario) {
 
 				if (usuario.getId() == 0) {
@@ -124,6 +143,55 @@ public class JdbcUsuarioDao {
 					throw new RuntimeException(e);
 				}
 			}
+			
+			
+			//BUSCA POR ID
+			public Usuario buscaPorId(Long id) {
+
+				if (id == null) {
+					throw new IllegalStateException("Id nÃ£o deve ser nula.");
+				}
+
+				try {
+					PreparedStatement stmt = this.connection
+							.prepareStatement("select * from usuarios where id = ?");
+					stmt.setLong(1, id);
+
+					ResultSet rs = stmt.executeQuery();
+
+					if (rs.next()) {
+						return populaUser(rs);
+					}
+
+					rs.close();
+					stmt.close();
+
+					return null;
+				} catch (SQLException e) {
+					throw new RuntimeException(e);
+				}
+				// CONTINUAR LÁ EM BAIXO
+			}
+			
+			
+			
+			
+			
+		// Final para listar user ou buscar por id
+			
+			private Usuario populaUser(ResultSet rs) throws SQLException {
+				Usuario usuario = new Usuario();
+
+				// popula o objeto tarefa
+				usuario.setId(rs.getInt("id"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setPerfil(rs.getInt("perfil"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setAtivo(rs.getInt("ativo"));
+
+			// Retorna o objeto no while
+				return usuario;			}
+			
 			
 			
 			

@@ -55,7 +55,7 @@ $("#tarefa_"+id).closest("tr").hide();
 		</tr>
 		<c:forEach items="${usuarios}" var="usuario">
 			<tr>
-
+// TODO FAZER UMA CLASSE PARA VOLTAR ESTA INFORMAÇÃO
 				<td>${usuario.id}</td>
 				<td>${usuario.login}</td>
 				<td>${usuario.perfil} - 
@@ -78,7 +78,7 @@ $("#tarefa_"+id).closest("tr").hide();
 <%-- 				<td><fmt:formatDate value="${tarefa.dataFinalizacao.time}" --%>
 <%-- 						pattern="dd/MM/yyyy" /></td> --%>
 				
-				<td><a href="mostraUsuario?id=${usuario.id}">Alterar</a></td> 
+				<td><a href="alteraUsuario?id=${usuario.id}">Alterar</a></td> 
 				<td><a href="removeUsuario?id=${usuario.id}">Remover</a></td> 
 				<td id="tarefa_${usuario.id}"><a href="#" onClick="removeAgora(${usuario.id})">Remover com ajax</a></td> 
 			</tr>
