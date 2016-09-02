@@ -44,14 +44,45 @@
             </li>
 
 
-		<li><a href="listaPerfil">Listar perfis</a> <!------- Configurações ---------->
-			<ul id="perfis">
+		<li><a href="listaPerfil">Configurações</a> <!------- Configurações ---------->
+			<ul id="configuracoes">
 				<li><img class="corner_inset_left" alt=""
 					src="recursos/imagens/Menu/corner_inset_left.png" /> <a
-					href="listaPerfil">Lista de perfis</a> <img
+					href="listaPerfil">Perfis</a> <img
 					class="corner_inset_right" alt=""
 					src="recursos/imagens/Menu/corner_inset_right.png" /></li>
-				<li><a href="novoPerfil">Criar perfil</a></li>
+					
+					<li><img class="corner_inset_left" alt=""
+					src="recursos/imagens/Menu/corner_inset_left.png" /> <a href="novoPerfil">Criar perfil</a> <img
+					class="corner_inset_right" alt=""
+					src="recursos/imagens/Menu/corner_inset_right.png" /></li>
+					
+					
+										<li><img class="corner_inset_left" alt=""
+					src="recursos/imagens/Menu/corner_inset_left.png" /> <a
+					href="listaCategoria">Categorias</a> <img
+					class="corner_inset_right" alt=""
+					src="recursos/imagens/Menu/corner_inset_right.png" /></li>
+					
+															<li><img class="corner_inset_left" alt=""
+					src="recursos/imagens/Menu/corner_inset_left.png" /> <a
+					href="novaCategoria">Criar categoria</a> <img
+					class="corner_inset_right" alt=""
+					src="recursos/imagens/Menu/corner_inset_right.png" /></li>
+					
+															<li><img class="corner_inset_left" alt=""
+					src="recursos/imagens/Menu/corner_inset_left.png" /> <a
+					href="listaPrioridade">Prioridade</a> <img
+					class="corner_inset_right" alt=""
+					src="recursos/imagens/Menu/corner_inset_right.png" /></li>
+					
+															<li><img class="corner_inset_left" alt=""
+					src="recursos/imagens/Menu/corner_inset_left.png" /> <a
+					href="novaPrioridade">Criar Prioridade</a> <img
+					class="corner_inset_right" alt=""
+					src="recursos/imagens/Menu/corner_inset_right.png" /></li>
+					
+					
 				<li class="last"><img class="corner_left" alt=""
 					src="recursos/imagens/Menu/corner_left.png" /> <img class="middle"
 					alt="" src="recursos/imagens/Menu/dot.gif" /> <img

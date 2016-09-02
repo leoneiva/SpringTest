@@ -1,4 +1,6 @@
 <!-- headTag -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" href="recursos/css/tarefas.css" rel="stylesheet" />
 <link href="js/JQuery/jquery-ui.css" rel="stylesheet">
 <script src="js/JQuery/jquery-3.0.0.min.js"></script>
